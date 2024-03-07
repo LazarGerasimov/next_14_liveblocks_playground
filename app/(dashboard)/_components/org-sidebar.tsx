@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Poppins } from 'next/font/google';
 import { cn } from '@/lib/utils';
+import { OrganizationSwitcher } from '@clerk/nextjs';
 
 const font = Poppins({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ const OrgSidebar = () => {
           </span>
         </div>
       </Link>
+      <OrganizationSwitcher hidePersonal />
     </div>
   )
 }
