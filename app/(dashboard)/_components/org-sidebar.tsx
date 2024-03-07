@@ -31,7 +31,19 @@ const OrgSidebar = () => {
           </span>
         </div>
       </Link>
-      <OrganizationSwitcher hidePersonal />
+      <OrganizationSwitcher
+        hidePersonal
+        appearance={{
+          elements: {
+            rootBox: {
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%"
+            }
+          }
+        }}
+      />
     </div>
   )
 }
