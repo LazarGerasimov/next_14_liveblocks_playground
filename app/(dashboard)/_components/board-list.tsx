@@ -24,9 +24,23 @@ const BoardList = ({
     )
   };
 
-  
+  // no favourites case
+  if (!data?.length && query.favourites) {
+    return (
+      <div>
+        No favourites
+      </div>
+    )
+  };
 
-
+  // no boards case
+  if (!data?.length) {
+    return (
+      <div>
+        No boards at all
+      </div>
+    )
+  }
 
   return (
     <div>
