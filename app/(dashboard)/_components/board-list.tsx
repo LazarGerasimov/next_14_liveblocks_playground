@@ -1,5 +1,7 @@
 "use client";
 
+import EmptySearch from "./empty-search";
+
 interface BoardListProps {
   orgId: string;
   query: {
@@ -18,9 +20,7 @@ const BoardList = ({
   // Case where user search for something that does exist
   if (!data.length && query.search) {
     return (
-      <div>
-        Try searching for something else
-      </div>
+      <EmptySearch />
     )
   };
 
