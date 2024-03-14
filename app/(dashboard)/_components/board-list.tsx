@@ -1,5 +1,6 @@
 "use client";
 
+import EmptyBoards from "./empty-boards";
 import EmptyFavourites from "./empty-favourites";
 import EmptySearch from "./empty-search";
 
@@ -18,7 +19,7 @@ const BoardList = ({
 
   const data = []; // add API call;
 
-  // Case where user search for something that does exist
+  // user searches for something that does exist
   if (!data.length && query.search) {
     return (
       <EmptySearch />
@@ -35,9 +36,7 @@ const BoardList = ({
   // no boards case
   if (!data?.length) {
     return (
-      <div>
-        No boards at all
-      </div>
+      <EmptyBoards />
     )
   }
 
