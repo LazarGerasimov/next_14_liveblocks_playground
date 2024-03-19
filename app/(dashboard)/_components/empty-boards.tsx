@@ -6,6 +6,7 @@ import { useMutation } from "convex/react";
 import { api } from '@/convex/_generated/api';
 import { useOrganization } from "@clerk/nextjs";
 import { useApiMutation } from "@/hooks/use-api-mutation";
+import { toast } from "sonner";
 
 const EmptyBoards = () => {
 
@@ -20,6 +21,11 @@ const EmptyBoards = () => {
       title: "Untitled",
       orgId: organization.id,
     })
+    .then((id) => {
+      toast.success("Board created.")
+      // add redirection 
+    })
+    .catch(() => toast.error("Failed to create board."))
   }
   return (
     <div className="h-full flex flex-col items-center justify-center">
