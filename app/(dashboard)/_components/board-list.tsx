@@ -7,6 +7,7 @@ import EmptyBoards from "./empty-boards";
 import EmptyFavourites from "./empty-favourites";
 import EmptySearch from "./empty-search";
 import { Loading } from "@/components/auth/loading";
+import { BoardCard } from "./board-card";
 
 interface BoardListProps {
   orgId: string;
@@ -56,7 +57,24 @@ const BoardList = ({
 
   return (
     <div>
-      {JSON.stringify(data)}
+      <h2 className="text-3xl">
+        {query.favourites ? "Favourite Boards" : "Team Boards"}
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 mt-8 pb-10">
+        {data.map((board) => (
+          <BoardCard
+            key={board._id}
+            id={board._id}
+            title={board.title}
+            imageUrl={board.imageUrl}
+            authorId={board.authorId}
+            authorName={board.authorName}
+            createdAt={board._creationTime}
+            orgId={board.orgId}
+            isFavourite={false}
+          />
+        ))}
+      </div>
     </div>
   )
 }
