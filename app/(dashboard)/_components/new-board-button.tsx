@@ -1,8 +1,8 @@
 "use client";
 
 import { api } from "@/convex/_generated/api";
+import { useApiMutation } from "@/hooks/use-api-mutation";
 import { cn } from "@/lib/utils";
-import { useMutation } from "convex/react";
 import { Plus } from "lucide-react";
 
 
@@ -16,10 +16,10 @@ const NewBoardButton = ({
   disabled
 }: NewBoardButtonProps) => {
 
-  const create = useMutation(api.board.create);
+  const { mutate, pending } = useApiMutation(api.board.create);
 
   const onClick = () => {
-    create({
+    mutate({
       orgId,
       title: "Untitled"
     })
@@ -27,11 +27,11 @@ const NewBoardButton = ({
 
   return (
     <button
-      disabled={disabled}
+      disabled={pending || disabled}
       onClick={onClick}
       className={cn(
         "col-span-1 aspect-[100/127] bg-blue-600 hover:bg-blue-800 rounded-lg flex flex-col items-center justify-center py-6",
-        disabled && "opacity-75"
+        (pending || disabled) && "opacity-75"
       )}
     >
       <div />
