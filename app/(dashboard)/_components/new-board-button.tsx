@@ -4,6 +4,7 @@ import { api } from "@/convex/_generated/api";
 import { useApiMutation } from "@/hooks/use-api-mutation";
 import { cn } from "@/lib/utils";
 import { Plus } from "lucide-react";
+import { toast } from "sonner";
 
 
 interface NewBoardButtonProps {
@@ -23,6 +24,11 @@ const NewBoardButton = ({
       orgId,
       title: "Untitled"
     })
+    .then((id) => {
+      toast.success("Board created");
+      // Redirect to /board/${id}
+    })
+    .catch(() => toast.error("Failed to create board"))
   }
 
   return (
