@@ -24,11 +24,11 @@ const NewBoardButton = ({
       orgId,
       title: "Untitled"
     })
-    .then((id) => {
-      toast.success("Board created");
-      // Redirect to /board/${id}
-    })
-    .catch(() => toast.error("Failed to create board"))
+      .then((id) => {
+        toast.success("Board created");
+        // Redirect to /board/${id}
+      })
+      .catch(() => toast.error("Failed to create board"))
   }
 
   return (
@@ -37,7 +37,7 @@ const NewBoardButton = ({
       onClick={onClick}
       className={cn(
         "col-span-1 aspect-[100/127] bg-blue-600 hover:bg-blue-800 rounded-lg flex flex-col items-center justify-center py-6",
-        (pending || disabled) && "opacity-75"
+        (pending || disabled) && "opacity-75 hover:bg-blue-600 cursor-not-allowed"
       )}
     >
       <div />
