@@ -2,6 +2,14 @@
 
 import { DropdownMenuContentProps } from "@radix-ui/react-dropdown-menu";
 
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator
+} from "./ui/dropdown-menu";
+
 interface ActionsProps {
   children: React.ReactNode;
   side?: DropdownMenuContentProps["side"];
@@ -18,8 +26,10 @@ export const Actions = ({
   title
 }: ActionsProps) => {
   return (
-    <div>
-      Actions
-    </div>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        {children}
+      </DropdownMenuTrigger>
+    </DropdownMenu>
   )
 }
