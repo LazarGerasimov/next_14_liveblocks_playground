@@ -35,10 +35,23 @@ export const create = mutation({
       title: args.title,
       orgId: args.orgId,
       authorId: identity.subject,
-      authorName: identity.name ,
+      authorName: identity.name,
       imageUrl: randomImage,
     });
 
     return board;
   },
 });
+
+export const remove = mutation({
+  args: { id: v.id("boards") },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+
+    if (!identity) {
+      throw new Error("Unauthorized");
+    }
+
+    await ctx.db.delete(args.id)
+  }
+})
