@@ -80,4 +80,4 @@ export const update = mutation({
 
     return board
   }
-})
+});
