@@ -124,7 +124,7 @@ export const favourite = mutation({
 });
 
 export const unfavourite = mutation({
-  args: { id: v.id("boards"), orgId: v.string() },
+  args: { id: v.id("boards") },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
 
@@ -142,11 +142,10 @@ export const unfavourite = mutation({
 
     const existingFavourite = await ctx.db
       .query("userFavourites")
-      .withIndex("by_user_board_org", (q) =>
+      .withIndex("by_user_board", (q) =>
         q
           .eq("userId", userId)
           .eq("boardId", board._id)
-          .eq("orgId", args.orgId)
       )
       .unique();
 
