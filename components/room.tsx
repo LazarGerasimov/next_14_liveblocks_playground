@@ -7,15 +7,17 @@ import { ClientSideSuspense } from "@liveblocks/react";
 interface RoomProps {
   children: ReactNode,
   roomId: string;
+  fallback: NonNullable<ReactNode> | null;
 }
 
 const Room = ({
   children,
-  roomId
+  roomId,
+  fallback
 }: RoomProps) => {
   return (
     <RoomProvider id={roomId} initialPresence={{}}>
-      <ClientSideSuspense fallback={<div>Loading...</div>}>
+      <ClientSideSuspense fallback={fallback}>
         {() => children}
       </ClientSideSuspense>
     </RoomProvider>
