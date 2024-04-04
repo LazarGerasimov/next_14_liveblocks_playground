@@ -15,6 +15,7 @@ const Room = ({
   roomId,
   fallback
 }: RoomProps) => {
+  
   return (
     <RoomProvider id={roomId} initialPresence={{}}>
       <ClientSideSuspense fallback={fallback}>
