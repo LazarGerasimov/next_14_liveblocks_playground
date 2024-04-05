@@ -1,12 +1,14 @@
 "use client";
 
 import Hint from "@/app/(dashboard)/_components/hint";
+import { Actions } from "@/components/actions";
 import { Button } from "@/components/ui/button";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { cn } from "@/lib/utils";
 import { useRenameModal } from "@/store/use-rename-modal";
 import { useQuery } from "convex/react";
+import { Menu } from "lucide-react";
 
 import { Poppins } from "next/font/google";
 import Image from "next/image";
@@ -64,13 +66,30 @@ const Info = ({
         </Button>
       </Hint>
       <TabSeparator />
-      <Button
-        variant={"board"}
-        className="text-base font-normal px-2"
-        onClick={() => onOpen(data._id, data.title)}
+      <Hint label="Rename board" side="bottom" sideOffset={10}>
+        <Button
+          variant={"board"}
+          className="text-base font-normal px-2"
+          onClick={() => onOpen(data._id, data.title)}
+        >
+          {data.title}
+        </Button>
+      </Hint>
+      <TabSeparator />
+      <Actions
+        id={data._id}
+        title={data.title}
+        side="bottom"
+        sideOffset={10}
       >
-        {data.title}
-      </Button>
+        <div>
+          <Hint label="Main menu" side="bottom" sideOffset={10}>
+            <Button size={"icon"} variant={"board"}>
+              <Menu />
+            </Button>
+          </Hint>
+        </div>
+      </Actions>
     </div>
   )
 }
