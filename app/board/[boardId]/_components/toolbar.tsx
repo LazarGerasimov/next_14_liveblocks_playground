@@ -1,4 +1,4 @@
-import { MousePointer2 } from "lucide-react";
+import { MousePointer2, Type } from "lucide-react";
 import ToolButton from "./tool-button";
 
 
@@ -10,6 +10,13 @@ const Toolbar = () => {
           label="Select"
           icon={MousePointer2}
           onClick={() => { }}
+          isActive={false}
+        />
+        <ToolButton
+          label="Text"
+          icon={Type}
+          onClick={() => { }}
+          isActive={false}
         />
       </div>
       <div className='bg-white rounded-md p-1.5 flex flex-col items-center shadow-md'>
