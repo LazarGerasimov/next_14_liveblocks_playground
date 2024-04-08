@@ -1,4 +1,4 @@
-import { MousePointer2, Type } from "lucide-react";
+import { MousePointer2, StickyNote, Type } from "lucide-react";
 import ToolButton from "./tool-button";
 
 
@@ -15,6 +15,12 @@ const Toolbar = () => {
         <ToolButton
           label="Text"
           icon={Type}
+          onClick={() => { }}
+          isActive={false}
+        />
+        <ToolButton
+          label="Sticky Note"
+          icon={StickyNote}
           onClick={() => { }}
           isActive={false}
         />
