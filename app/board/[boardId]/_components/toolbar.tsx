@@ -1,4 +1,4 @@
-import { Circle, MousePointer2, Pencil, Square, StickyNote, Type, Undo2 } from "lucide-react";
+import { Circle, MousePointer2, Pencil, Redo2, Square, StickyNote, Type, Undo2 } from "lucide-react";
 import ToolButton from "./tool-button";
 
 
@@ -47,6 +47,12 @@ const Toolbar = () => {
         <ToolButton
           label="Undo"
           icon={Undo2}
+          onClick={() => { }}
+          isDisabled={false}
+        />
+        <ToolButton
+          label="Redo"
+          icon={Redo2}
           onClick={() => { }}
           isDisabled={false}
         />
