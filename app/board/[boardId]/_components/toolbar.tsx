@@ -1,4 +1,4 @@
-import { MousePointer2, Square, StickyNote, Type } from "lucide-react";
+import { Circle, MousePointer2, Square, StickyNote, Type } from "lucide-react";
 import ToolButton from "./tool-button";
 
 
@@ -27,6 +27,12 @@ const Toolbar = () => {
         <ToolButton
           label="Rectangle"
           icon={Square}
+          onClick={() => { }}
+          isActive={false}
+        />
+        <ToolButton
+          label="Ellipse"
+          icon={Circle}
           onClick={() => { }}
           isActive={false}
         />
