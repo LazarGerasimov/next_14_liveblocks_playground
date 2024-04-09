@@ -37,6 +37,17 @@ export type EllipseLayer = {
   value?: string;
 }
 
+export type PathLayer = {
+  type: LayerType.Path;
+  x: number;
+  y: number;
+  height: number;
+  width: number;
+  fill: Color;
+  points: number[][];
+  value?: string;
+}
+
 export type CanvasState =
   | {
     mode: CanvasMode.None
