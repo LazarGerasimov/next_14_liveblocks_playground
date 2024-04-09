@@ -58,6 +58,16 @@ export type TextLayer = {
   value?: string;
 }
 
+export type NoteLayer = {
+  type: LayerType.Note;
+  x: number;
+  y: number;
+  height: number;
+  width: number;
+  fill: Color;
+  value?: string;
+}
+
 export type CanvasState =
   | {
     mode: CanvasMode.None
