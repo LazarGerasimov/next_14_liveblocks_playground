@@ -27,7 +27,15 @@ export type RecangleLayer = {
   value?: string;
 }
 
-
+export type EllipseLayer = {
+  type: LayerType.Ellipse;
+  x: number;
+  y: number;
+  height: number;
+  width: number;
+  fill: Color;
+  value?: string;
+}
 
 export type CanvasState =
   | {
