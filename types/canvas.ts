@@ -17,6 +17,16 @@ export enum LayerType {
   Note
 };
 
+export type RecangleLayer = {
+  type: LayerType.Rectangle;
+  x: number;
+  y: number;
+  height: number;
+  width: number;
+  fill: Color;
+  value?: string;
+}
+
 
 
 export type CanvasState =
