@@ -80,18 +80,29 @@ export type XYWH = {
   height: number;
 }
 
+export enum Side {
+  Top = 1,
+  Bottom = 2,
+  Left = 4,
+  Right = 8
+}
+
 export type CanvasState =
   | {
     mode: CanvasMode.None
   }
   | {
     mode: CanvasMode.SelectionNet,
+    origin: Point;
+    current?: Point;
   }
   | {
     mode: CanvasMode.Translating,
+    current: Point;
   }
   | {
     mode: CanvasMode.Inserting,
+    layerType: LayerType.Ellipse | LayerType.Rectangle | LayerType.Text | LayerType.Note;
   }
   | {
     mode: CanvasMode.Pencil,
