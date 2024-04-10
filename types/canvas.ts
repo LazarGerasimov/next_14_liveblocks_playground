@@ -109,9 +109,12 @@ export type CanvasState =
   }
   | {
     mode: CanvasMode.Pressing,
+    origin: Point;
   }
   | {
     mode: CanvasMode.Resizing,
+    initialBounds: XYWH;
+    corner: Side;
   }
 
 export enum CanvasMode {
