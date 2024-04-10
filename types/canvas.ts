@@ -68,6 +68,18 @@ export type NoteLayer = {
   value?: string;
 }
 
+export type Point = {
+  x: number;
+  y: number;
+}
+
+export type XYWH = {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
 export type CanvasState =
   | {
     mode: CanvasMode.None
