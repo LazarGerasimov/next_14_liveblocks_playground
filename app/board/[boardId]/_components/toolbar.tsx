@@ -1,6 +1,6 @@
 import { Circle, MousePointer2, Pencil, Redo2, Square, StickyNote, Type, Undo2 } from "lucide-react";
 import ToolButton from "./tool-button";
-import { CanvasMode, CanvasState } from "@/types/canvas";
+import { CanvasMode, CanvasState, LayerType } from "@/types/canvas";
 
 interface ToolbarProps {
   canvasState: CanvasState;
@@ -37,9 +37,13 @@ const Toolbar = ({
         <ToolButton
           label="Text"
           icon={Type}
-          onClick={() => setCanvasState({ mode: CanvasMode.Inserting })}
+          onClick={() => setCanvasState({
+            mode: CanvasMode.Inserting,
+            layerType: LayerType.Text,
+          })}
           isActive={
-            canvasState.mode === CanvasMode.Inserting
+            canvasState.mode === CanvasMode.Inserting && 
+            canvasState.layerType === LayerType.Text
           }
         />
         <ToolButton
