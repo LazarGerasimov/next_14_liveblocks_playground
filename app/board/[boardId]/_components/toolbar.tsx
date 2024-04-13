@@ -42,15 +42,21 @@ const Toolbar = ({
             layerType: LayerType.Text,
           })}
           isActive={
-            canvasState.mode === CanvasMode.Inserting && 
+            canvasState.mode === CanvasMode.Inserting &&
             canvasState.layerType === LayerType.Text
           }
         />
         <ToolButton
           label="Sticky Note"
           icon={StickyNote}
-          onClick={() => { }}
-          isActive={false}
+          onClick={() => setCanvasState({
+            mode: CanvasMode.Inserting,
+            layerType: LayerType.Note
+          })}
+          isActive={
+            canvasState.mode === CanvasMode.Inserting &&
+            canvasState.layerType === LayerType.Note
+          }
         />
         <ToolButton
           label="Rectangle"
