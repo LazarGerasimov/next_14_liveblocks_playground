@@ -63,7 +63,7 @@ const Toolbar = ({
           icon={Square}
           onClick={() => setCanvasState({
             mode: CanvasMode.Inserting,
-            layerType: LayerType.Note
+            layerType: LayerType.Rectangle
           })}
           isActive={
             canvasState.mode === CanvasMode.Inserting &&
@@ -73,8 +73,14 @@ const Toolbar = ({
         <ToolButton
           label="Ellipse"
           icon={Circle}
-          onClick={() => { }}
-          isActive={false}
+          onClick={() => setCanvasState({
+            mode: CanvasMode.Inserting,
+            layerType: LayerType.Ellipse
+          })}
+          isActive={
+            canvasState.mode === CanvasMode.Inserting &&
+            canvasState.layerType === LayerType.Ellipse
+          }
         />
         <ToolButton
           label="Pen"
