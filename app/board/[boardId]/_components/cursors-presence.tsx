@@ -4,6 +4,7 @@
 import { memo } from 'react';
 
 import { useOthersConnectionIds } from '@/liveblocks.config';
+import Cursor from './cursor';
 
 const Cursors = () => {
   const ids = useOthersConnectionIds();
@@ -13,7 +14,7 @@ const Cursors = () => {
       {ids.map((connectiondId) => (
         <Cursor
           key={connectiondId}
-          connectiondId={connectiondId}
+          connectionId={connectiondId}
         />
       ))}
     </>
