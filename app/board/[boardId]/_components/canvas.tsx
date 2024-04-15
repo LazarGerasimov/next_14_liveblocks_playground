@@ -7,6 +7,7 @@ import Toolbar from "./toolbar";
 import { Camera, CanvasMode, CanvasState } from "@/types/canvas";
 import { useCanRedo, useCanUndo, useHistory, useMutation } from "@/liveblocks.config";
 import CursorsPresence from "./cursors-presence";
+import { pointerEventToCanvasPoint } from "@/lib/utils";
 
 interface CanvasProps {
   boardId: string;
@@ -38,7 +39,7 @@ const Canvas = ({
   }, e: React.PointerEvent) => {
     e.preventDefault();
 
-    const current = { x: 0, y: 0 };
+    const current = pointerEventToCanvasPoint(e, camera);
 
     setMyPresence({ cursor: current })
   }, [])
