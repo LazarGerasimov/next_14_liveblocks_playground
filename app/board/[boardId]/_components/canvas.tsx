@@ -90,7 +90,29 @@ const Canvas = ({
     { setMyPresence }
   ) => {
     setMyPresence({ cursor: null })
-  }, [])
+  }, []);
+
+  const onPointerUp = useMutation((
+    { },
+    e
+  ) => {
+    const point = pointerEventToCanvasPoint(e, camera);
+
+    if (canvasState.mode === CanvasMode.Inserting) {
+      insertLayer(canvasState.layerType, point);
+    } else {
+      setCanvasState({
+        mode: CanvasMode.None
+      })
+    }
+
+    history.resume()
+  }, [
+    camera,
+    canvasState,
+    history,
+    insertLayer
+  ]);
 
   return (
     <main
@@ -111,6 +133,7 @@ const Canvas = ({
         onWheel={onWheel}
         onPointerMove={onPointerMove}
         onPointerLeave={onPointerLeave}
+        onPointerUp={onPointerUp}
       >
         <g
           style={{ transform: `translate(${camera.x}px), ${camera.y}px` }}
