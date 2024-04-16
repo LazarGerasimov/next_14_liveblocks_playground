@@ -144,7 +144,7 @@ const Canvas = ({
               key={layerId}
               id={layerId}
               onLayerPointerDown={() => { }}
-              selectionColor={null}
+              selectionColor={""}
             />
           ))}
           <CursorsPresence />
