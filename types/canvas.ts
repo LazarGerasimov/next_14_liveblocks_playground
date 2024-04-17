@@ -17,7 +17,7 @@ export enum LayerType {
   Note
 };
 
-export type RecangleLayer = {
+export type RectangleLayer = {
   type: LayerType.Rectangle;
   x: number;
   y: number;
@@ -127,4 +127,4 @@ export enum CanvasMode {
   Pencil
 };
 
-export type Layer = RecangleLayer | EllipseLayer | PathLayer | TextLayer | NoteLayer;
+export type Layer = RectangleLayer | EllipseLayer | PathLayer | TextLayer | NoteLayer;
