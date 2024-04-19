@@ -31,7 +31,7 @@ const Rectangle = ({
       height={height}
       strokeWidth={1}
       fill={"#000"}
-      stroke="transparent"
+      stroke={selectionColor || "transparent"}
     />
   )
 }
