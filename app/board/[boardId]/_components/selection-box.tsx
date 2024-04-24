@@ -136,6 +136,23 @@ const SelectionBox = memo(({
               // Add resize handler
             }}
           />
+          <rect
+            className="fill-white stroke-1 stroke-blue-500"
+            x={0}
+            y={0}
+            style={{
+              cursor: "nesw-resize",
+              width: `${HANDLE_WIDTH}px`,
+              height: `${HANDLE_WIDTH}px`,
+              transform: `translate(
+                ${bounds.x - HANDLE_WIDTH / 2}px, 
+                ${bounds.y - HANDLE_WIDTH / 2 + bounds.height}px)`
+            }}
+            onPointerDown={(e) => {
+              e.stopPropagation()
+              // Add resize handler
+            }}
+          />
         </>
       )}
     </>
