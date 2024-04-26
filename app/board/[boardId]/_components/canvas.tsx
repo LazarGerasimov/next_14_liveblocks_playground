@@ -8,7 +8,7 @@ import Toolbar from "./toolbar";
 import { Camera, CanvasMode, CanvasState, Color, LayerType, Point, Side, XYWH } from "@/types/canvas";
 import { useCanRedo, useCanUndo, useHistory, useMutation, useOthersMapped, useStorage } from "@/liveblocks.config";
 import CursorsPresence from "./cursors-presence";
-import { connectionIdToColor, pointerEventToCanvasPoint } from "@/lib/utils";
+import { connectionIdToColor, pointerEventToCanvasPoint, resizeBounds } from "@/lib/utils";
 import { LiveObject } from '@liveblocks/client';
 import LayerPreview from './layer-preview';
 import SelectionBox from './selection-box';
@@ -79,8 +79,20 @@ const Canvas = ({
       return;
     }
 
-    
-  }, []);
+    const bounds = resizeBounds(
+      canvasState.initialBounds,
+      canvasState.corner,
+      point
+    );
+
+    const liveLayers = storage.get("layers");
+    const layer = liveLayers.get(self.presence.selection[0]);
+
+    if (layer) {
+      layer.update(bounds);
+    }
+
+  }, [canvasState]);
 
   const OnResizeHandlePointerDown = useCallback((
     corner: Side,
@@ -109,11 +121,15 @@ const Canvas = ({
     const current = pointerEventToCanvasPoint(e, camera);
 
     if (canvasState.mode === CanvasMode.Resizing) {
-
+      resizeSelectedLayer(current)
     }
 
     setMyPresence({ cursor: current })
-  }, []);
+  }, [
+    camera,
+    canvasState,
+    resizeSelectedLayer
+  ]);
 
   const onPointerLeave = useMutation((
     { setMyPresence }
