@@ -27,7 +27,16 @@ const SelectionTools = memo(({
   const y = selectionBounds.y + camera.y;
 
   return (
-    <div>SelectionTools</div>
+    <div
+      className="absolute p-3 rounde-xl bg-white shadow-sm border flex select-none"
+      style={{
+        transform: `translate(
+          calc(${x}px - 50%),
+          calc(${y - 16}px - 100%)
+        )`
+      }}
+    >
+      SelectionTools</div>
   )
 })
 
