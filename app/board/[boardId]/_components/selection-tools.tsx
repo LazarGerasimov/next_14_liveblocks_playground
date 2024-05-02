@@ -8,7 +8,7 @@ import { memo } from "react";
 import ColorPicker from "./color-picker";
 import { useDeleteLayers } from "@/hooks/use-delete-layers";
 import Hint from "@/app/(dashboard)/_components/hint";
-import { Trash2 } from "lucide-react";
+import { BringToFront, SendToBack, Trash2 } from "lucide-react";
 
 interface SelectionToolsProps {
   camera: Camera;
@@ -58,6 +58,24 @@ const SelectionTools = memo(({
       <ColorPicker
         onChange={setFill}
       />
+      <div className="flex flex-col gap-y-0.5">
+        <Hint label="Bring to front">
+          <Button
+            variant={"board"}
+            size={"icon"}
+          >
+            <BringToFront />
+          </Button>
+        </Hint>
+        <Hint label="Send to Back" side="bottom">
+          <Button
+            variant={"board"}
+            size={"icon"}
+          >
+            <SendToBack />
+          </Button>
+        </Hint>
+      </div>
       <div className="flex items-center pl-2 ml-2 border-l border-neutral-200">
         <Hint label="Delete">
           <Button
