@@ -109,11 +109,27 @@ const Canvas = ({
     }
   }, []);
 
+  const updateSelectionNet = useMutation((
+    { storage, setMyPresence },
+    current: Point,
+    origin: Point
+  ) => {
+    const layers = storage.get("layers").toImmutable();
+    setCanvasState({
+      mode: CanvasMode.SelectionNet,
+      origin,
+      current
+    });
+
+    
+  }, []);
+
   const startMultiSelection = useCallback((
     current: Point,
     origin: Point
   ) => {
     if (
+      // Selection net threshold is 5 
       Math.abs(current.x - origin.x) + Math.abs(current.y - origin.y) > 5
     ) {
       setCanvasState({
@@ -176,6 +192,8 @@ const Canvas = ({
 
     if (canvasState.mode === CanvasMode.Pressing) {
       startMultiSelection(current, canvasState.origin);
+    } else if (canvasState.mode === CanvasMode.SelectionNet) {
+      updateSelectionNet(current, canvasState.origin);
     } else if (canvasState.mode === CanvasMode.Translating) {
       translateSelectedLayers(current);
     } else if (canvasState.mode === CanvasMode.Resizing) {
