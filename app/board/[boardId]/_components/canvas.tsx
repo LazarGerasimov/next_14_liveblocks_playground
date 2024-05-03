@@ -109,6 +109,21 @@ const Canvas = ({
     }
   }, []);
 
+  const startMultiSelection = useCallback((
+    current: Point,
+    origin: Point
+  ) => {
+    if (
+      Math.abs(current.x - origin.x) + Math.abs(current.y - origin.y) > 5
+    ) {
+      setCanvasState({
+        mode: CanvasMode.SelectionNet,
+        origin,
+        current
+      })
+    }
+  }, []);
+
   const resizeSelectedLayer = useMutation((
     { storage, self },
     point: Point
@@ -158,7 +173,10 @@ const Canvas = ({
 
     const current = pointerEventToCanvasPoint(e, camera);
 
-    if (canvasState.mode === CanvasMode.Translating) {
+
+    if (canvasState.mode === CanvasMode.Pressing) {
+      startMultiSelection(current, canvasState.origin);
+    } else if (canvasState.mode === CanvasMode.Translating) {
       translateSelectedLayers(current);
     } else if (canvasState.mode === CanvasMode.Resizing) {
       resizeSelectedLayer(current)
