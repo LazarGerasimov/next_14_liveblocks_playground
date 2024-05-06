@@ -42,6 +42,13 @@ export const Text = ({
       <ContentEditable
         html={"Text"}
         onChange={() => { }}
+        className={cn(
+          "h-full w-full flex items-center justify-center text-center drop-shadow-md outline-none",
+          font.className
+        )}
+        style={{
+          color: fill ? colorToCss(fill) : "#000"
+        }}
       />
     </foreignObject>
   )
