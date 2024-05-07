@@ -13,6 +13,15 @@ const font = Kalam({
   weight: ["400"]
 });
 
+const calculateFontSize = (width: number, height: number) => {
+  const maxFontSize = 96;
+  const scaleFactor = 0.5;
+  const fontSizeBasedOnHeight = height * scaleFactor;
+  const fontSizeBasedOnWidth = width * scaleFactor;
+
+  return Math.min(fontSizeBasedOnHeight, fontSizeBasedOnWidth, maxFontSize);
+}
+
 interface TextProps {
   id: string;
   layer: TextLayer;
@@ -47,6 +56,7 @@ export const Text = ({
           font.className
         )}
         style={{
+          fontSize: calculateFontSize(width, height),
           color: fill ? colorToCss(fill) : "#000"
         }}
       />
