@@ -173,6 +173,24 @@ const Canvas = ({
     })
   }, [canvasState.mode]);
 
+  const insertPath = useMutation((
+    { storage, self, setMyPresence }
+  ) => {
+    const liveLayers = storage.get("layers");
+    const { pencilDraft } = self.presence;
+
+    if (
+      pencilDraft == null ||
+      pencilDraft.length < 2 ||
+      liveLayers.size >= MAX_LAYERS
+    ) {
+      setMyPresence({ pencilDraft: null });
+      return;
+    }
+
+    const id = nanoid();
+  }, []);
+
   const startDrawing = useMutation((
     { setMyPresence },
     point: Point,
@@ -295,6 +313,8 @@ const Canvas = ({
       setCanvasState({
         mode: CanvasMode.None
       });
+    } else if (canvasState.mode === CanvasMode.Pencil) {
+      insertPath();
     } else if (canvasState.mode === CanvasMode.Inserting) {
       insertLayer(canvasState.layerType, point);
     } else {
@@ -305,11 +325,13 @@ const Canvas = ({
 
     history.resume()
   }, [
+    setCanvasState,
     camera,
     canvasState,
     history,
     insertLayer,
-    unselectLayers
+    unselectLayers,
+    insertPath
   ]);
 
   const selections = useOthersMapped((other) => other.presence.selection);
