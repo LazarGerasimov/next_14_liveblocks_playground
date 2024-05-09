@@ -147,6 +147,32 @@ const Canvas = ({
     }
   }, []);
 
+  const continueDrawing = useMutation((
+    { self, setMyPresence },
+    point: Point,
+    e: React.PointerEvent
+  ) => {
+    const { pencilDraft } = self.presence;
+
+    if (
+      canvasState.mode !== CanvasMode.Pencil ||
+      e.buttons !== 1 ||
+      pencilDraft == null
+    ) {
+      return;
+    }
+
+    setMyPresence({
+      cursor: point,
+      pencilDraft:
+        pencilDraft.length === 1 &&
+          pencilDraft[0][0] === point.x &&
+          pencilDraft[0][1] === point.y
+          ? pencilDraft
+          : [...pencilDraft, [point.x, point.y, e.pressure]]
+    })
+  }, [canvasState.mode]);
+
   const startDrawing = useMutation((
     { setMyPresence },
     point: Point,
@@ -216,14 +242,19 @@ const Canvas = ({
       translateSelectedLayers(current);
     } else if (canvasState.mode === CanvasMode.Resizing) {
       resizeSelectedLayer(current)
+    } else if (canvasState.mode === CanvasMode.Pencil) {
+      continueDrawing(current, e);
     }
 
     setMyPresence({ cursor: current })
   }, [
+    continueDrawing,
     camera,
     canvasState,
     resizeSelectedLayer,
-    translateSelectedLayers
+    translateSelectedLayers,
+    startMultiSelection,
+    updateSelectionNet
   ]);
 
   const onPointerLeave = useMutation((
