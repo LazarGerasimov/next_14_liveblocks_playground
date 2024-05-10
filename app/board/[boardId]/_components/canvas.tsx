@@ -8,7 +8,7 @@ import Toolbar from "./toolbar";
 import { Camera, CanvasMode, CanvasState, Color, LayerType, Point, Side, XYWH } from "@/types/canvas";
 import { useCanRedo, useCanUndo, useHistory, useMutation, useOthersMapped, useStorage } from "@/liveblocks.config";
 import CursorsPresence from "./cursors-presence";
-import { connectionIdToColor, findIntersectingLayersWithRectangle, pointerEventToCanvasPoint, resizeBounds } from "@/lib/utils";
+import { connectionIdToColor, findIntersectingLayersWithRectangle, penPointsToPathLayers, pointerEventToCanvasPoint, resizeBounds } from "@/lib/utils";
 import { LiveObject } from '@liveblocks/client';
 import LayerPreview from './layer-preview';
 import SelectionBox from './selection-box';
@@ -189,7 +189,20 @@ const Canvas = ({
     }
 
     const id = nanoid();
-  }, []);
+    liveLayers.set(
+      id,
+      new LiveObject(penPointsToPathLayers(
+        pencilDraft,
+        lastUsedColor,
+      ))
+    )
+
+    const liveLayerIds = storage.get("layerIds");
+    liveLayerIds.push(id);
+
+    setMyPresence({ pencilDraft: null });
+    setCanvasState({ mode: CanvasMode.Pencil });
+  }, [lastUsedColor]);
 
   const startDrawing = useMutation((
     { setMyPresence },
