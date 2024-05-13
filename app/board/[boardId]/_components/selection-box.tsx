@@ -145,7 +145,7 @@ const SelectionBox = memo(({
             }}
             onPointerDown={(e) => {
               e.stopPropagation()
-              onResizeHandlePointerDown(Side.Bottom, bounds); 
+              onResizeHandlePointerDown(Side.Bottom, bounds);
             }}
           />
           <rect
@@ -188,5 +188,7 @@ const SelectionBox = memo(({
   )
 }
 )
+
+SelectionBox.displayName = "Selection Box";
 
 export default SelectionBox
