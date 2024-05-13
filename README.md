@@ -1,4 +1,4 @@
-A Drawing board playground within a shared workspace done with Next 14, Liveblocks and Convex. 
+Drawing board playground within a shared workspace done with Next 14, Liveblocks and Convex. 
 
 https://next-14-liveblocks-playground.vercel.app/
 
