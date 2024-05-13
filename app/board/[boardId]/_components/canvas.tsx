@@ -399,6 +399,9 @@ const Canvas = ({
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       switch (e.key) {
+        case "Backspace": 
+          deleteLayers();
+          break;
         case "z": {
           if (e.ctrlKey || e.metaKey) {
             if (e.shiftKey) {
